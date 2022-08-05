@@ -1,0 +1,137 @@
+Some comments on feature importance analysis
+For Classification Algorithms
+a.sanchez.824@gmail.com
+March 2022
+
+===============================================================================
+Logistic Regression:
+===============================================================================
+Suppose there are 3 features x1, x2, and x3. The associated
+linear model used to make a decision through the logistic function, is:
+
+h(x1, x2, x3) = alpha_0 + alpha_1 * x1 + alpha_2 * x2 + alpha_3 * x3
+
+... where the logistic function is
+
+g(z) = 1/(1 + exp(-z))
+
+The decision, given x1, x2, and x3 is made as:
+
+class 1 >> if g(h(x1, x2, x3)) >= 0.5
+class 0 >> otherwise
+
+However, one can show that ...
+
+g(h(x1, x2, x3)) >= 0.5 if and only if  h(x1, x2, x3)  >= 0
+
+So, to analyze the importance of x1, x2, and x3, one can
+explore the values of alpha_1, alpha_2, and alpha_3, 
+observing that:
+
+- positive coefficients with large value, "nudge" the decision 
+for the positive class (target = 1)
+
+- negative coefficients with large *absolute* value,  "nudge" 
+the decision for the negative class (target = 0)
+
+NOTE: this reasoning assumes that the features take non-negative
+values, and this condition can be enforced by the
+appropriate scaling of the dataset.
+
+So, for instance if ...
+
+alpha_1 = -3, alpha_2 = 5, and alpha_3 = -0.234, then ...
+
+alpha_1 contributes to a data point to be classified as belonging to
+class 0
+
+alpha_2 
+contributes to a data point to be classified as belonging to
+class 1
+
+alpha_3 
+contributes to a data point to be classified as belonging to
+class 0--however with much less strength than  alpha_1
+
+The following will show two ways to implement this using the
+"coeff_" attribute of a LogisticRegression object:
+
+https://stackoverflow.com/questions/34052115/how-to-find-the-importance-of-the-features-for-a-logistic-regression-model
+
+I would recommend that you use the method that mentions "standardized parameters"
+
+The documentation for LogisticRegression can be found here:
+
+http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+
+===============================================================================
+Random Forests:
+===============================================================================
+
+See "feature_importances_" attribute in ...
+
+http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+See also this neat way to graphically show the importances ...
+
+http://scikit-learn.org/stable/auto_examples/ensemble/plot_forest_importances.html
+
+Here is a good summary of some of the concepts, with useful code, although
+the underlying motivation is feature selection ...
+
+http://blog.datadive.net/selecting-good-features-part-iii-random-forests/
+
+NOTE: other decision tree-based algorithm produce information that
+is similar to the ones discussed here for Classification Algorithms
+
+===============================================================================
+Other (perhaps more advanced) resources:
+===============================================================================
+
+SHAP Package:
+Excellent approach to measurable interpretability
+https://shap.readthedocs.io/en/latest/index.html
+
+https://christophm.github.io/interpretable-ml-book/feature-importance.html
+
+https://papers.nips.cc/paper/4928-understanding-variable-importances-in-forests-of-randomized-trees.pdf
+
+http://www.mauricioreyes.me/Publications/PereiraMedia2018.pdf
+
+>> In general, the resource below contains interesting discussions,
+and I recommend it as a general reference on Interpretability.
+
+https://christophm.github.io/interpretable-ml-book
+
+===============================================================================
+Levels Of Applications:
+===============================================================================
+
+Level 1:
+- Random Forest Importance:
+
+NOTE: you can also get similar feature 
+importance metrics for XGBOOST and LGBM.
+
+This type of importance does not measure "direction": meaning,that it does not 
+measure whether the likelihood associated with a class for a given input 
+increases or decreases as the importance of a feature increases or decreases.
+
+Level 2:
+- Logistic Regression:
+
+This type of importance *DOES* measure "direction": meaning, that it does 
+measure whether the likelihood associated with a class for a given input 
+increases or decreases as the importance of a feature increases or decreases.
+
+However, interaction importance is more difficult to study. Interaction 
+importance refers to the study of how the variation of *multiple* variables 
+affect the target.
+
+Level 3:
+- SHAP with XGBOOST
+This type of importance *DOES* measure "direction" as well.
+
+Moreover, SHAP also measures pairwise importance, and also produces charts 
+that  can be used to study other interactions among features.
+===============================================================================

@@ -1,0 +1,109 @@
+Some Resources on Imbalanced Classification Problems
+a.sanchez.824@gmail.com
+Updated: 4/2020
+
+==============================================================
+The resources are listed in the order of complexity,
+beginning with the less complex ones.
+
+The first two resources are really good summaries, and the second 
+contains examples and good graphical explanations. 
+
+The third resource is a package that implements some 
+resampling methods in Python.
+
+For a good quick start, I would recommend to read
+(1) for an overview, and then try some of the
+methods mentioned there implemented by the
+package in (3).
+
+Also, bear in mind that for some applications, there
+might be specific methods that work well for those
+applications.
+
+An example would be "image augmentation", or
+"image augmentation for x-ray images". Do Web
+searches of these topics if you want to have
+an idea of how these methods work. Also, try
+the more generic term "Data Augmentation".
+
+==============================================================
+(1) http://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/
+
+(2) https://svds.com/learning-imbalanced-classes/
+
+(3) https://imbalanced-learn.readthedocs.io/en/stable/
+
+(3.1) Good intro to SMOTE ...
+https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/
+
+**IMPORTANT NOTE**: if you are using Anaconda, I recommend
+that you install imbalanced-learn from the Anaconda
+prompt, as indicated here ...
+
+https://imbalanced-learn.readthedocs.io/en/stable/install.html
+
+conda install -c conda-forge imbalanced-learn
+
+**END NOTE**
+
+**ADDITIONAL NOTE**: the author of (1) above has also
+put together additional resources:
+
+Discover how to systematically get good results for imbalanced classification:
+>> Step-By-Step Framework for Imbalanced Classification Projects
+https://machinelearningmastery.com/framework-for-imbalanced-classification-projects/
+
+Discover how to work through a credit card fraud prediction project step-by-step:
+>> Imbalanced Classification with the Fraudulent Credit Card Transactions Dataset
+https://machinelearningmastery.com/imbalanced-classification-with-the-fraudulent-credit-card-transactions-dataset/
+
+Discover how to identify glass type based on the chemical composition:
+>> Imbalanced Multiclass Classification with the Glass Identification Dataset
+https://machinelearningmastery.com/imbalanced-multiclass-classification-with-the-glass-identification-dataset/
+
+**END NOTE**
+==============================================================
+Other resources come from one of the experts in the field, 
+Prof. Chawla from Notre Dame.
+
+He wrote a chapter for the book "Imbalanced Learning: Foundations, Algorithms,  and Applications, First Edition (2013)". This chapter can be
+downloaded from here:
+
+(4) https://www3.nd.edu/~dial/publications/hoens2013imbalanced.pdf
+
+I think this chapter presents good brief explanations of the
+different approaches for under-sampling and over-sampling.
+
+He is the author of "SMOTE". You might want to see the following
+in connection with that:
+
+https://imbalanced-learn.readthedocs.io/en/stable/generated/imblearn.over_sampling.SMOTE.html
+
+(5) It turns out that one of his graduate students 
+(Reid Johnson) completed his PhD dissertation on precisely this topic. His dissertation can be downloaded from here ...
+
+https://curate.nd.edu/downloads/0p096684s7g
+
+(6) He also recently published a paper with other co-authors
+applying some of these ideas to credit card data
+
+https://www3.nd.edu/~rjohns15/content/papers/ssci2015_calibrating.pdf
+
+(7) Finally, I am curious about whether applying "anomaly detection" algorithms
+could be used as an unsupervised approach to "detect" anomalies, instead
+of predicting them. We would simply ignore the labels and let the data "talk".
+
+You can see several videos from Prof. Andrew Ng (Stanford)
+on the topic, of which the one below is the firts one. 
+I took this course on Coursera back in 2012, and really liked it.
+
+https://www.youtube.com/watch?v=086OcT-5DYI&list=PLLssT5z_DsK-h9vYZkQkYNWcItqhlRJLN&index=88
+
+I know it is a lot to chew on, so use these resources according to your needs.
+
+Let me know if you have any questions.
+
+Regards,
+
+ -AJ
